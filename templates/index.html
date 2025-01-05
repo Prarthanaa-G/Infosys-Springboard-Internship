@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XGBoost Model Prediction</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>XGBoost Model Prediction</h1>
+
+        {% if error %}
+        <div class="error">{{ error }}</div>
+        {% endif %}
+
+        <form action="/predict" method="POST" enctype="multipart/form-data">
+            <label for="file">Upload CSV File:</label>
+            <input type="file" name="file" id="file" required>
+            <button type="submit">Predict</button>
+        </form>
+
+        <h1 class="mt-4">Prediction Results</h1>
+        {% if table_html %}
+            <div class="mt-4">
+                {{ table_html | safe }}
+            </div>
+        {% endif %}
+        {% if error %}
+            <div class="alert alert-danger mt-4">
+                {{ error }}
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
+
+
